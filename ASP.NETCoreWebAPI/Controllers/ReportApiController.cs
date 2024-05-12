@@ -26,19 +26,10 @@ namespace ASP.NETCoreWebAPI
         [ResponseType(typeof(List<ReportModel>))]
         public async Task<IActionResult> GetReportData()
         {
-            try
-            {
-                var model = await reportService.GenerateReport();
-                if (model == null)
-                    return BadRequest();
-                return Ok(model);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception
-                return StatusCode(500, "An error occurred while processing the request.");
-            }
-
+            var model = await reportService.GenerateReport();
+            if (model == null)
+                return BadRequest();
+            return Ok(model);
 
         }
 
